@@ -154,7 +154,9 @@ extension BackgroundLocationManager {
     
     fileprivate func clearRegions() {
         locationManager.monitoredRegions.forEach { region in
-            locationManager.stopMonitoring(for: region)
+            if region.identifier.contains("\(Constants.suitName).regionIdentifier.") {
+                locationManager.stopMonitoring(for: region)
+            }
         }
     }
     
